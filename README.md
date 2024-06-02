@@ -1,4 +1,4 @@
-# git-sync-automator
+### git-sync-automator
 # Repository Synchronization Script
 This script automates the process of creating repositories in one GitHub account (Account B) based on existing repositories in another account (Account A). It also synchronizes branches between the two accounts.
 
