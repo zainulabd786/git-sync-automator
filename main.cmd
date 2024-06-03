@@ -55,13 +55,9 @@ for /F "tokens=*" %%A in (repos.txt) do (
     echo git push %REMOTE_B% %%B >> %cd%\sync.cmd
     echo. >> %cd%\sync.cmd
   )
-
-  echo pause >> %cd%\sync.cmd
-
-  REM Remove the local clone (optional)
-  REM RD /S /Q %%A
+  cd ..
 
 )
-
+echo pause >> %cd%\sync.cmd
 ECHO All repositories processed!
 pause
