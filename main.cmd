@@ -42,6 +42,9 @@ for /F "tokens=*" %%A in (repos.txt) do (
 
   curl -H "Authorization: token %PAT_A%" "https://api.github.com/repos/%ORG%/%%A/branches?per_page=100" | jq -r ".[].name" > branches.txt
   
+  echo. >> %cd%\sync.cmd
+  echo REM "Syncing %%A" >> %cd%\sync.cmd
+  echo cd %cd%\%%A >> %cd%\sync.cmd
   echo git fetch origin >> %cd%\sync.cmd
   for /F "tokens=*" %%B in (branches.txt) do (
     git checkout -b %%B origin/%%B
@@ -49,7 +52,6 @@ for /F "tokens=*" %%A in (repos.txt) do (
 
     echo. >> %cd%\sync.cmd
     echo REM "--------------Syncing %%A:%%B--------------" >> %cd%\sync.cmd
-    echo cd %cd%\%%A >> %cd%\sync.cmd
     echo git checkout %%B >> %cd%\sync.cmd
     echo git pull origin %%B >> %cd%\sync.cmd
     echo git push %REMOTE_B% %%B >> %cd%\sync.cmd
